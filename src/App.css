@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.dark-theme,
+.dark-theme * {
+  color: white;
+}
+.light-theme,
+.light-theme * {
+  color: black;
+}
+
+.dark-theme,
+.dark-theme > * {
+  background-color: #282c34;
+}
+.light-theme,
+.light-theme > * {
+  background-color: rgb(243 244 246);
+}
+.dark-theme,
+.light-theme {
+  min-height: 100vh;
+  padding: 1rem;
+}
+.dark-theme *,
+.light-theme * {
+  margin: 1rem;
+}
+
+.themeButton {
+  display: block;
+}

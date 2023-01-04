@@ -1,4 +1,4 @@
-import {
+/*import {
   Button,
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   InputBase,
   Paper,
   Typography,
-} from "@mui/material";
+} from "@mui/material";*/
 import { useCallback, useEffect, useState } from "react";
 import { getShowsBySearch, ShowType } from "../../Api";
 import { Link, useSearchParams } from "react-router-dom";
@@ -47,31 +47,21 @@ const SearchPage = () => {
 
   return (
     <>
-      <Grid
-        container
-        justifyContent="center"
-        alignItems="center"
-        style={{ height: "100vh" }}
-      >
-        <Grid item sm={5} style={{ padding: "2em" }}>
-          <Paper
-            component="form"
-            sx={{ display: "flex", alignItems: "center" }}
-            style={{ padding: "2em" }}
-            autoComplete="off"
-            onSubmit={(e) => {
+      {/*<form onSubmit={(e:any) => {
               e.preventDefault();
-            }}
-          >
-            <FormControl>
-              <InputBase
-                id="outlined-basic"
-                placeholder="Search by title..."
-                onChange={(e) => handleOnSearchChange(e.target.value)}
+            }}>
+          <div className="wrap">
+            <div className="search">
+            <input
+                type="text"
+                className="searchTerm"
+                placeholder="What are you looking for?"
+                onChange={(e: any) => handleOnSearchChange(e.target.value)}
                 value={currentSearch.get("search")}
                 autoFocus
               />
-            </FormControl>
+<div className="searchButton" disabled={isSearchButtonDisabled()}
+                onClick={handleOnSearch}></div>
             <FormControl>
               <Button
                 disabled={isSearchButtonDisabled()}
@@ -103,7 +93,7 @@ const SearchPage = () => {
             </Link>
           ))}
         </Grid>
-      </Grid>
+          </Grid>*/}
     </>
   );
 };
