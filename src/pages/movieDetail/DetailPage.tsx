@@ -113,7 +113,7 @@ const ShowDetailActions = ({ show }: { show: ShowDetailType }) => {
         <div className="tooltip" data-tip="Add to watching">
           <button
             className="btn btn-circle"
-            onClick={() => addToWatching(show.id, currentUser)}
+            onClick={() => addToWatching(showBool, currentUser)}
           >
             +
           </button>

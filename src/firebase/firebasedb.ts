@@ -26,9 +26,9 @@ export const removeFromFavourites = async (
   await remove(ref(database, "users/" + user?.uid + "/favShowsId/" + show.id));
 };
 
-export const addToWatching = (showId: number, user: UserType) => {
+export const addToWatching = (show: searchMovieBool, user: UserType) => {
   set(ref(database, `users/${user?.uid}/watching`), {
-    showId,
+    [show.id]: show,
   });
 };
 

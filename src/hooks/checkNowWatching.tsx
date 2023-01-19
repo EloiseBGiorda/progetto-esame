@@ -13,7 +13,7 @@ const useIsWatching = (id?: string | number) => {
     }
 
     const unsubscribe = onValue(
-      ref(database, `users/${currentUser.uid}/watching/`),
+      ref(database, `users/${currentUser.uid}/watching/${id}`),
       (snapshot) => {
         const data = snapshot.val();
         const idNum = parseInt(id as string);
@@ -23,7 +23,7 @@ const useIsWatching = (id?: string | number) => {
           return;
         }
 
-        setIsWatching(data.showId === idNum);
+        setIsWatching(!!data);
       }
     );
 
