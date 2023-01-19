@@ -7,6 +7,8 @@ type ShowApiResType = {
     image?: {
       medium: string;
     };
+    genres: string[];
+    summary?: string;
   };
 };
 
@@ -14,7 +16,16 @@ export type ShowType = {
   id: number;
   title: string;
   image?: string;
+  genres: string[];
+  summary?: string;
 };
+
+export interface searchMovieBool extends ShowType {
+  favourite: boolean;
+}
+export interface firebaseDbMovie {
+  [key: string]: searchMovieBool;
+}
 
 export const getShowsBySearch = async (query: string) => {
   query = query.trim();
@@ -27,6 +38,8 @@ export const getShowsBySearch = async (query: string) => {
     id: el.show.id,
     title: el.show.name,
     image: el.show.image?.medium,
+    genres: el.show.genres,
+    summary: fixSummary(el.show.summary) /*.replace(/<\/?[^>]+(>|$)/g, "")*/,
   }));
   return mappedData;
 };
@@ -72,8 +85,11 @@ export const getShowById = async (id: number) => {
     endDate: data.ended,
     avgRating: data.rating?.average,
     image: data.image?.original,
-    summary: data.summary,
+    summary: fixSummary(data.summary) /*.replace(/<\/?[^>]+(>|$)/g, "")*/,
   };
-  console.log(mappedData);
   return mappedData;
+};
+
+const fixSummary = (summary: string | undefined) => {
+  return summary?.replace(/<\/?[^>]+(>|$)/g, "");
 };

@@ -1,10 +1,15 @@
 import { useEffect } from "react";
 import "firebaseui/dist/firebaseui.css";
 import { EmailAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "../../firebase/firebase";
 import * as firebaseui from "firebaseui";
-
+import { switchTheme } from "../../redux/theme/theme.slice";
+import { useDispatch } from "react-redux";
+import { LightTheme } from "../../shared/themeIcons";
+import { DarkTheme } from "../../shared/themeIcons";
+import { Navbar } from "../../shared/navbar";
 const Login = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
     //firebaseui
     const ui =
@@ -23,23 +28,21 @@ const Login = () => {
           requireDisplayName: false,
         },
       ],
-      signInSuccessUrl: "/dashboard",
+      signInSuccessUrl: "/movies",
       signInFlow: "popup",
     });
   }, []);
 
   return (
     <>
-      <main className="flex items-center justify-center h-screen bg-gray-100">
+      <Navbar isUserLogged={false}></Navbar>
+      <main className="flex items-center justify-center pt-32">
         <form>
-          <div className="bg-white w-96 p-6 rounded shadow-sm">
-            <div className="flex items-center justify-center mb-4">
-              <img
-                src="https://www.svgrepo.com/show/18425/tv.svg"
-                alt="logo"
-                className="h-32"
-              ></img>
-            </div>
+          <div className="w-96 p-6">
+            <h3 className="flex items-center justify-center text-1xl md:text-2xl lg:text-3xl font-bold ">
+              Log-in
+            </h3>
+
             <div id="firebaseui-auth-container"></div>
           </div>
         </form>

@@ -38,32 +38,49 @@
 }
 
 .dark-theme,
-.dark-theme * {
+.dark-theme *:not(.bg-clip-text) {
   color: white;
 }
-.light-theme,
-.light-theme * {
+body,
+body * {
   color: black;
 }
 
 .dark-theme,
-.dark-theme > * {
+.dark-theme div {
   background-color: #282c34;
 }
-.light-theme,
-.light-theme > * {
+body,
+body div {
   background-color: rgb(243 244 246);
 }
-.dark-theme,
-.light-theme {
+body {
   min-height: 100vh;
   padding: 1rem;
 }
-.dark-theme *,
-.light-theme * {
-  margin: 1rem;
+body > * {
+  display: block;
 }
 
-.themeButton {
+body .moon,
+.dark-theme .sun {
+  display: none;
+  max-width: 2rem;
+}
+body .sun,
+.dark-theme .moon {
   display: block;
+  max-width: 2rem;
+}
+
+#showDetail,
+.centerItem {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#navBar {
+  justify-content: space-between;
 }

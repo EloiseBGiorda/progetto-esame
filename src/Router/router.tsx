@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "../pages/dashboard/Dashboard";
 import Login from "../pages/login/Login";
 import Protected from "../pages/login/Protected";
 import Movies from "../pages/movies/movies";
 import DetailPage from "../pages/movieDetail/DetailPage";
+import FavouritesPage from "../pages/favourites/favourites";
 
 const Router = () => {
   const router = createBrowserRouter([
@@ -16,20 +16,29 @@ const Router = () => {
       element: <Login />,
     },
     {
-      path: "/dashboard",
+      path: "/movies",
+
       element: (
         <Protected>
-          <Dashboard />
+          <Movies />
         </Protected>
       ),
     },
     {
-      path: "/movies",
-      element: <Movies />,
+      path: "/movies/:showId",
+      element: (
+        <Protected>
+          <DetailPage />
+        </Protected>
+      ),
     },
     {
-      path: "/:showId",
-      element: <DetailPage />,
+      path: "/favourites",
+      element: (
+        <Protected>
+          <FavouritesPage />
+        </Protected>
+      ),
     },
   ]);
   return <RouterProvider router={router} />;

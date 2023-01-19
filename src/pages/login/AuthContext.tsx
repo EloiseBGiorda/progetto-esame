@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
-import { auth } from "../../firebase";
+import { auth } from "../../firebase/firebase";
 import { User, onAuthStateChanged } from "firebase/auth";
 
 //interface of the authorization provider
@@ -13,13 +13,19 @@ interface AuthContextType {
   logOut: () => void;
 }
 
+interface UserContextProps {
+  children: React.ReactNode;
+}
+
 export const AuthContext = createContext<AuthContextType>({
   currentUser: undefined,
   logOut: async () => {},
 });
 
-export const AuthProvider = ({ children }: AuthProviderType) => {
-  const [currentUser, setCurrentUser] = useState<User | null>();
+export const AuthProvider = ({ children }: UserContextProps) => {
+  const [currentUser, setCurrentUser] = useState<User | null | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -29,7 +35,7 @@ export const AuthProvider = ({ children }: AuthProviderType) => {
         setCurrentUser(null);
       }
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const logOut = () => {

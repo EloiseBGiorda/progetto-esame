@@ -13,6 +13,7 @@ export const themeSlice = createSlice({
   reducers: {
     switchTheme: (state) => {
       state.darkMode = !state.darkMode;
+      document.getElementsByTagName("body")[0].classList.toggle("dark-theme");
     },
   },
 });
